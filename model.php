@@ -24,7 +24,10 @@ class Banco{
 	}
 
 	function buscarNota($codnota){
-		echo "anada";
+		global $conn;
+		$sql="SHOW COLUMNS FROM 'notas'";
+		$result = mysqli_query($conn,$sql);
+
 	}
 
 	function buscarNotasEmAberto(){
@@ -35,14 +38,13 @@ class Banco{
 		while($row = mysqli_fetch_array($result)) {
 
 			echo "<div class='row table-notas'>";
-			echo "<div class='col-sm-1'>".$row["ID_Nota"]."</div>";
-			echo "<div class='col-sm-2'>".$row["Cod_Nota"]."</div>";
-			echo "<div class='col-sm-2'>".$row["Vendedor"]."</div>";
-			echo "<div class='col-sm-2'>".$row["Cliente"]."</div>";
-			echo "<div class='col-sm-2'>".$row["Observacao"]."</div>";
-			echo "<div class='col-sm-2'>";
+			echo "<div class='col-sm-4 bord'>".$row["Cod_Nota"]."</div>";
+			echo "<div class='col-sm-4 bord'>".$row["Vendedor"]."</div>";
+			echo "<div class='col-sm-4 bord'>".$row["Cliente"]."</div>";
+			echo "<div class='col-sm-12 bord ob'>".$row["Observacao"]."</div>";
+			echo "<div class='col-sm-12  nova'>";
 			echo "<form method='POST' action='exibeNota.php'>";
-			echo "<button type='submit' name='codigo' value='".$row["Cod_Nota"]."'>Separar</button>";
+			echo "<center><button type='submit' name='codigo' value='".$row["Cod_Nota"]."'>Separar</button></center>";
 			echo "</form></div>";
 			echo "</div>";
 		}

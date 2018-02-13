@@ -42,6 +42,7 @@ INSERT INTO Usuarios values(null,"Thailan",0,"th","th",0);
 INSERT INTO notas values(null,578493,"Devanir","Balcao",null);
 INSERT INTO notas values(null,578494,"Reinaldo","Balcao",null);
 INSERT INTO notas values(null,578495,"Edson","Balcao","Cliente vem Buscar");
+INSERT INTO notas values(null,578495,"Alex","Entrega","Cliente vem Buscar as 14:00");
 
 INSERT INTO notas_separadas
 values(null,'Aldo',0,'0000-00-00','00:00:00',1,1);

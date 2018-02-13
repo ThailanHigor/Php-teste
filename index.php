@@ -8,22 +8,27 @@ $a = new Banco();
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="static/css/notass.css">
 	<title>Testando</title>
 </head>
-<body>
-<div>
-<fieldset>
-	<legend>Login</legend>
+<body style="background-color: gray;">
+<div class="login">
+	<center>
 	<form method="post" action="login.php">
-	<label>Usuario:</label>
-	<input type="text" name="usuario">
-	
-	<label>Senha:</label>
-	<input type="text" name="senha">
-
-	<button type="submit">Enviar</button>
+		<div>
+			<label style="padding-right:9px; margin-right:0px; " >Usuario:</label>
+			<input type="text" name="usuario">
+		</div>
+		</br>
+		<div>
+			<label style="padding-left: 10px; margin-right:20px; ">Senha:</label>
+			<input type="text" name="senha">
+		</div>
+		<br>
+		<button type="submit">Entrar</button>
 	</form>
-</fieldset>
+	</center>
 </div>
 </body>
 </html>
