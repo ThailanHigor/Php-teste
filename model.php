@@ -1,6 +1,12 @@
 <?php
 $conn = null;
-
+/*		$sql = "SELECT NS.ID_NS,U.Nome,N.Vendedor
+				FROM notas_separadas as NS
+				INNER JOIN notas AS N
+				INNER JOIN usuarios as U
+				ON NS.ID_Nota=N.ID_Nota
+				and NS.ID_Usuario = U.ID_Usuario;
+				";*/
 class Banco{
 	function Banco(){
 		global $conn;
@@ -15,25 +21,30 @@ class Banco{
 		if ($conn->connect_error) {
 		    die("Erro ao Conectar " . $conn->connect_error);
 		} 
-
 	}
 
-	function buscar(){
+	function buscarNota($codnota){
+		echo "anada";
+	}
+
+	function buscarNotasEmAberto(){
 		global $conn;
-		$sql = "SELECT NS.ID_NS as Numero_Nota,U.Nome as Separador,N.Vendedor
-				FROM notas_separadas as NS
-				INNER JOIN notas AS N
-				INNER JOIN usuarios as U
-				ON NS.ID_Nota=N.ID_Nota
-				and NS.ID_Usuario = U.ID_Usuario;
-				";
+		$sql = "SELECT ID_Nota,Cod_Nota,Vendedor,Cliente,Observacao FROM notas";
 
 		$result = mysqli_query($conn,$sql);
-
 		while($row = mysqli_fetch_array($result)) {
-				
-		        echo "id: " . $row["Numero_Nota"]. " ".$row["Separador"]." ".$row["Vendedor"]."<br>";
 
+			echo "<div class='row table-notas'>";
+			echo "<div class='col-sm-1'>".$row["ID_Nota"]."</div>";
+			echo "<div class='col-sm-2'>".$row["Cod_Nota"]."</div>";
+			echo "<div class='col-sm-2'>".$row["Vendedor"]."</div>";
+			echo "<div class='col-sm-2'>".$row["Cliente"]."</div>";
+			echo "<div class='col-sm-2'>".$row["Observacao"]."</div>";
+			echo "<div class='col-sm-2'>";
+			echo "<form method='POST' action='exibeNota.php'>";
+			echo "<button type='submit' name='codigo' value='".$row["Cod_Nota"]."'>Separar</button>";
+			echo "</form></div>";
+			echo "</div>";
 		}
 	}
 
@@ -43,16 +54,21 @@ class Banco{
 		$result = mysqli_query($conn,$sql);
 
 		$num_results = mysqli_num_rows($result);
+		$row = mysqli_fetch_object($result);
 
 		if($num_results != 0){
-			while($row = mysqli_fetch_object($result)) {
-				echo $row->Nome;
-
+			$sqlstatus = "UPDATE usuarios SET Status=1 WHERE ID_Usuario=$row->ID_Usuario";
+			$result2 = mysqli_query($conn,$sqlstatus);
+			if(!$result2){
+				echo "Erro ao mudar status para online";
+			}
 		}
-				header("Location: teste.php");
-				
+			
+			header("Location:index_notas.php");	
 
-		}
+		} 
 	}
-}
+
+
+
 ?>

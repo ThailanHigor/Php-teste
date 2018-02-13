@@ -2,7 +2,6 @@
 
 include "model.php";
 $a = new Banco();
-$a->conectar();
 
 
 $usuario = $_POST['usuario'];
