@@ -1,5 +1,7 @@
 <?php
 $conn = null;
+
+
 /*		$sql = "SELECT NS.ID_NS,U.Nome,N.Vendedor
 				FROM notas_separadas as NS
 				INNER JOIN notas AS N
@@ -21,6 +23,12 @@ class Banco{
 		if ($conn->connect_error) {
 		    die("Erro ao Conectar " . $conn->connect_error);
 		} 
+	}
+
+
+
+	function atualizar() {
+
 	}
 
 	function buscarNota($codnota){
